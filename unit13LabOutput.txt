@@ -1,0 +1,60 @@
+SQL> 
+SQL> rem Q1 - basic select columns with headers
+SQL> 
+SQL> column "Desc" format a20
+SQL> column "Start Date" format a20
+SQL> column "Dest desc" format a20
+SQL> column "Duration" format a10
+SQL> break on "Desc" on "Start Date" on "Duration"
+SQL> select tour_description as "Desc",to_char(start_date,'fmMonthdd, yyyy') as "Start Date",concat(end_date-start_date,' Days')as "Duration" ,order# as "Num",substr(dest_description,1,15) "Dest desc",to_char(price,'$9,990.00') as "Price"
+  2  FROM rcv_customer join rcv_tour_customer using (customer_number)
+  3  	join rcv_vacation_tour using (tour_code)
+  4  	join rcv_tour_destination using (tour_code)
+  5  	join rcv_destination using (dest_code)
+  6  where first_name='Amy' and last_name='Folwer'
+  7  order by 1,4,5;
+
+Desc                 Start Date           Duration          Num Dest desc            Price                              
+-------------------- -------------------- ---------- ---------- -------------------- ----------                         
+Calgary Highlights   August8, 2022        4 Days              1 Calgary City Si         $214.36                         
+                                                              2 Sulfur Mountain         $121.00                         
+                                                              3 Heritage Park -          $79.99                         
+Calgary Stampede     July8, 2022          9 Days              1 Calgary Stamped         $251.00                         
+                                                              2 Calgary Stamped         $131.00                         
+                                                              3 Calgary City Si         $214.36                         
+European Vacation    July10, 2022         14 Days             1 Skip the Line T         $102.99                         
+                                                              2 Normandy D-Day          $439.43                         
+                                                              3 French Riviera           $89.26                         
+                                                              4 360 degree Barc         $597.76                         
+                                                              5 Familia Sagrada          $70.03                         
+France in 4 Days     August23, 2022       3 Days              1 Skip the Line T         $102.99                         
+                                                              2 Normandy D-Day          $439.43                         
+                                                              3 Nice Small-Grou          $96.13                         
+                                                              4 Nice Local Vine         $109.86                         
+Sights of Barcelona  August28, 2022       7 Days              1 Barcelona in On         $196.96                         
+                                                              2 360 degree Barc         $597.76                         
+                                                              3 Sunset Jazz Cru          $49.95                         
+                                                              4 Interactive Spa          $72.76                         
+
+19 rows selected.
+
+SQL> clear breaks
+SQL> clear columns
+SQL> 
+SQL> rem Q2
+SQL> 
+SQL> rem insert solution here!
+SQL> 
+SQL> rem Q3
+SQL> 
+SQL> rem insert solution here!
+SQL> 
+SQL> rem Q4
+SQL> 
+SQL> rem insert solution here!
+SQL> 
+SQL> rem Q5
+SQL> 
+SQL> rem insert solution here!
+SQL> 
+SQL> spool off
