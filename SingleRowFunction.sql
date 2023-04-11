@@ -1,4 +1,4 @@
--- Lab Unit 10-11 Simple SELECT and Sorting 
+-- Lab Unit 14 Single Row Functions 
 set echo on
 set linesize 120
 set pagesize 66
@@ -25,10 +25,10 @@ clear columns
 
 column "Desc" format a40
 column "Country" format a20
-column "Cost" format a10
+column "Cost" format a5
 column "City" format a20
 select dest_description  "Desc", 
-   rpad('$', price / 100 , '$') "Cost", 
+   rpad('$', price / 100 + 2 , '$') "Cost", 
    upper(country) "Country", city "City"
 from rcv_destination
 where country not in 'Canada' and country not in 'United States'
@@ -37,9 +37,12 @@ clear columns
 
 -- Q3 
 
--- insert solution here!
-
-
+column "Desc" format a80
+column "Country" format a20
+select dest_description "Desc", replace(country, 'United States', 'USA') "Country", nvl(state, 'NA') "State"
+from rcv_destination
+where dest_description like '%Cook%'or dest_description like '%Wine%'or dest_description like '%Dinner%'
+order by 2, 1;
 
 spool off
 
