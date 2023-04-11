@@ -27,12 +27,17 @@ column "Desc" format a40
 column "Country" format a20
 column "Cost" format a5
 column "City" format a20
-select dest_description  "Desc", 
-   rpad('$', price / 100 + 2 , '$') "Cost", 
-   upper(country) "Country", city "City"
-from rcv_destination
-where country not in 'Canada' and country not in 'United States'
-order by 3, 4, 2;
+SELECT dest_description "Desc",
+  CASE WHEN price < 50 THEN '$'
+            WHEN price >= 50 AND price < 100 THEN '$$'
+            WHEN price >= 100 AND price < 200 THEN '$$$'
+            WHEN price >= 200 AND price < 500 THEN '$$$$'
+            ELSE '$$$$$'
+  END AS "Cost",
+  UPPER(country) "Country", city "City" 
+FROM rcv_destination
+WHERE country NOT IN ('Canada', 'United States') 
+ORDER BY 3, 4, 2;  
 clear columns
 
 -- Q3 
